@@ -10,7 +10,37 @@ import datetime
 import os
 
 st.set_page_config(page_title="Kosztorys Elektryczny", layout="centered")
+# --- SYSTEM LOGOWANIA ---
+MOJE_HASLO = "Elektro2026"  # <-- Tutaj wpisz swoje własne, tajne hasło
 
+# Sprawdzenie, czy użytkownik jest już zalogowany w obecnej sesji
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+if not st.session_state.logged_in:
+    st.title("🔒 Dostęp zablokowany")
+    st.info("Aplikacja chroniona hasłem dostępowym wykonawcy.")
+    
+    password_input = st.text_input("Wprowadź hasło dostępu:", type="password")
+    
+    if st.button("Zaloguj się", use_container_width=True):
+        if password_input == MOJE_HASLO:
+            st.session_state.logged_in = True
+            st.rerun()  # Przeładuj stronę, aby pokazać kosztorys
+        else:
+            st.error("Nieprawidłowe hasło. Odmowa dostępu.")
+            
+    # Zatrzymujemy wykonywanie dalszej części kodu (kosztorysu), dopóki brak autoryzacji
+    st.stop()
+
+# (Opcjonalnie) Przycisk wylogowania w menu bocznym:
+if st.sidebar.button("Wyloguj się"):
+    st.session_state.logged_in = False
+    st.rerun()
+
+# --- DALSZA CZĘŚĆ TWOJEGO KODU (KOSZTORYS, FORMULARZE, GENEROWANIE PDF) ---
+st.title("⚡ Kosztorys Robót Elektrycznych")
+# ... reszta kodu ...
 st.title("⚡ Kosztorys Robót Elektrycznych")
 st.caption("Aplikacja do kalkulacji i generowania ofert PDF")
 
