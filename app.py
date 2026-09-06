@@ -41,20 +41,25 @@ if st.sidebar.button("Wyloguj się"):
 st.title("⚡ Kosztorys Robót Elektrycznych")
 st.caption("Aplikacja do kalkulacji i generowania ofert PDF")
 
-# Czcionki z polskimi znakami
-font_registered = False
-windows_arial = "C:/Windows/Fonts/arial.ttf"
-windows_arial_bd = "C:/Windows/Fonts/arialbd.ttf"
+# --- OBSŁUGA POLSKICH ZNAKÓW W CHMURZE I NA WINDOWS ---
+import urllib.request
 
-if os.path.exists(windows_arial) and os.path.exists(windows_arial_bd):
-    pdfmetrics.registerFont(TTFont("CustomFont", windows_arial))
-    pdfmetrics.registerFont(TTFont("CustomFont-Bold", windows_arial_bd))
-    FONT_NORMAL = "CustomFont"
-    FONT_BOLD = "CustomFont-Bold"
-    font_registered = True
-else:
-    FONT_NORMAL = "Helvetica"
-    FONT_BOLD = "Helvetica-Bold"
+FONT_NORMAL = "DejaVuSans"
+FONT_BOLD = "DejaVuSans-Bold"
+
+if not os.path.exists("DejaVuSans.ttf"):
+    urllib.request.urlretrieve(
+        "https://raw.githubusercontent.com/dejavu-fonts/dejavu-fonts/master/ttf/DejaVuSans.ttf",
+        "DejaVuSans.ttf"
+    )
+if not os.path.exists("DejaVuSans-Bold.ttf"):
+    urllib.request.urlretrieve(
+        "https://raw.githubusercontent.com/dejavu-fonts/dejavu-fonts/master/ttf/DejaVuSans-Bold.ttf",
+        "DejaVuSans-Bold.ttf"
+    )
+
+pdfmetrics.registerFont(TTFont("DejaVuSans", "DejaVuSans.ttf"))
+pdfmetrics.registerFont(TTFont("DejaVuSans-Bold", "DejaVuSans-Bold.ttf"))
 
 with st.expander("1. Dane zlecenia", expanded=True):
     col_k1, col_k2 = st.columns(2)
