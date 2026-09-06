@@ -41,22 +41,25 @@ if st.sidebar.button("Wyloguj się"):
 st.title("⚡ Kosztorys Robót Elektrycznych")
 st.caption("Aplikacja do kalkulacji i generowania ofert PDF")
 
-# --- OBSŁUGA POLSKICH ZNAKÓW W CHMURZE I NA WINDOWS ---
-import urllib.request
+# --- OBSŁUGA POLSKICH ZNAKÓW (LINUX CHMURA + WINDOWS) ---
+linux_font = "/usr/share/fonts/truetype/freefont/FreeSans.ttf"
+linux_font_bold = "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf"
+win_font = "C:/Windows/Fonts/arial.ttf"
+win_font_bold = "C:/Windows/Fonts/arialbd.ttf"
 
-FONT_NORMAL = "DejaVuSans"
-FONT_BOLD = "DejaVuSans-Bold"
-
-if not os.path.exists("DejaVuSans.ttf"):
-    urllib.request.urlretrieve(
-        "https://raw.githubusercontent.com/dejavu-fonts/dejavu-fonts/master/ttf/DejaVuSans.ttf",
-        "DejaVuSans.ttf"
-    )
-if not os.path.exists("DejaVuSans-Bold.ttf"):
-    urllib.request.urlretrieve(
-        "https://raw.githubusercontent.com/dejavu-fonts/dejavu-fonts/master/ttf/DejaVuSans-Bold.ttf",
-        "DejaVuSans-Bold.ttf"
-    )
+if os.path.exists(linux_font) and os.path.exists(linux_font_bold):
+    pdfmetrics.registerFont(TTFont("PolskiFont", linux_font))
+    pdfmetrics.registerFont(TTFont("PolskiFont-Bold", linux_font_bold))
+    FONT_NORMAL = "PolskiFont"
+    FONT_BOLD = "PolskiFont-Bold"
+elif os.path.exists(win_font) and os.path.exists(win_font_bold):
+    pdfmetrics.registerFont(TTFont("PolskiFont", win_font))
+    pdfmetrics.registerFont(TTFont("PolskiFont-Bold", win_font_bold))
+    FONT_NORMAL = "PolskiFont"
+    FONT_BOLD = "PolskiFont-Bold"
+else:
+    FONT_NORMAL = "Helvetica"
+    FONT_BOLD = "Helvetica-Bold"
 
 pdfmetrics.registerFont(TTFont("DejaVuSans", "DejaVuSans.ttf"))
 pdfmetrics.registerFont(TTFont("DejaVuSans-Bold", "DejaVuSans-Bold.ttf"))
