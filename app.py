@@ -38,9 +38,6 @@ if st.sidebar.button("Wyloguj się"):
     st.session_state.logged_in = False
     st.rerun()
 
-# --- DALSZA CZĘŚĆ TWOJEGO KODU (KOSZTORYS, FORMULARZE, GENEROWANIE PDF) ---
-st.title("⚡ Kosztorys Robót Elektrycznych")
-# ... reszta kodu ...
 st.title("⚡ Kosztorys Robót Elektrycznych")
 st.caption("Aplikacja do kalkulacji i generowania ofert PDF")
 
