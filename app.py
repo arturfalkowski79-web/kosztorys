@@ -61,9 +61,6 @@ else:
     FONT_NORMAL = "Helvetica"
     FONT_BOLD = "Helvetica-Bold"
 
-pdfmetrics.registerFont(TTFont("DejaVuSans", "DejaVuSans.ttf"))
-pdfmetrics.registerFont(TTFont("DejaVuSans-Bold", "DejaVuSans-Bold.ttf"))
-
 with st.expander("1. Dane zlecenia", expanded=True):
     col_k1, col_k2 = st.columns(2)
     with col_k1:
