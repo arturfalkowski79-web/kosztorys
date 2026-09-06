@@ -41,25 +41,10 @@ if st.sidebar.button("Wyloguj się"):
 st.title("⚡ Kosztorys Robót Elektrycznych")
 st.caption("Aplikacja do kalkulacji i generowania ofert PDF")
 
-# --- OBSŁUGA POLSKICH ZNAKÓW (LINUX CHMURA + WINDOWS) ---
-linux_font = "/usr/share/fonts/truetype/freefont/FreeSans.ttf"
-linux_font_bold = "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf"
-win_font = "C:/Windows/Fonts/arial.ttf"
-win_font_bold = "C:/Windows/Fonts/arialbd.ttf"
-
-if os.path.exists(linux_font) and os.path.exists(linux_font_bold):
-    pdfmetrics.registerFont(TTFont("PolskiFont", linux_font))
-    pdfmetrics.registerFont(TTFont("PolskiFont-Bold", linux_font_bold))
-    FONT_NORMAL = "PolskiFont"
-    FONT_BOLD = "PolskiFont-Bold"
-elif os.path.exists(win_font) and os.path.exists(win_font_bold):
-    pdfmetrics.registerFont(TTFont("PolskiFont", win_font))
-    pdfmetrics.registerFont(TTFont("PolskiFont-Bold", win_font_bold))
-    FONT_NORMAL = "PolskiFont"
-    FONT_BOLD = "PolskiFont-Bold"
-else:
-    FONT_NORMAL = "Helvetica"
-    FONT_BOLD = "Helvetica-Bold"
+# --- OBSŁUGA POLSKICH ZNAKÓW Z PLIKU W REPOZYTORIUM ---
+pdfmetrics.registerFont(TTFont("PolskiFont", "Roboto.ttf"))
+FONT_NORMAL = "PolskiFont"
+FONT_BOLD = "PolskiFont"
 
 with st.expander("1. Dane zlecenia", expanded=True):
     col_k1, col_k2 = st.columns(2)
