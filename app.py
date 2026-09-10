@@ -58,13 +58,10 @@ with st.expander("1. Dane zlecenia", expanded=True):
 with st.expander("2. Instalacja Wewnętrzna", expanded=False):
     st.markdown("**Punkty wewnętrzne**")
     c1, c2 = st.columns(2)
-    in_pt_pwr = c1.number_input("Gniazda, łączniki (szt.):", value=40, step=1)
+    in_pt_pwr = c1.number_input("Gniazda, łączniki, Lampy (szt.):", value=40, step=1)
     in_pt_pwr_r = c2.number_input("Stawka za punkt 230V (zł):", value=85.0, step=5.0)
     
-    in_pt_pwr = c1.number_input("lampy (szt.):", value=40, step=1)
-    in_pt_pwr_r = c2.number_input("Stawka za punkt 230V (zł):", value=85.0, step=5.0)
-
-    in_pt_lan = c1.number_input("Punkty TV i LAN (szt.):", value=8, step=1)
+        in_pt_lan = c1.number_input("Punkty TV i LAN (szt.):", value=8, step=1)
     in_pt_lan_r = c2.number_input("Stawka TV/LAN (zł):", value=90.0, step=5.0)
 
     in_pt_alm = c1.number_input("Punkty alarmu wewn. (szt.):", value=6, step=1)
