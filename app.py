@@ -38,7 +38,7 @@ if st.sidebar.button("Wyloguj się"):
     st.session_state.logged_in = False
     st.rerun()
 
-st.title("⚡ Kosztorys Robót Elektrycznych")
+st.title(" Kosztorys Robót Elektrycznych")
 st.caption("Aplikacja do kalkulacji i generowania ofert PDF")
 
 # --- OBSŁUGA POLSKICH ZNAKÓW Z PLIKU W REPOZYTORIUM ---
@@ -58,7 +58,10 @@ with st.expander("1. Dane zlecenia", expanded=True):
 with st.expander("2. Instalacja Wewnętrzna", expanded=False):
     st.markdown("**Punkty wewnętrzne**")
     c1, c2 = st.columns(2)
-    in_pt_pwr = c1.number_input("Gniazda, łączniki, lampy (szt.):", value=40, step=1)
+    in_pt_pwr = c1.number_input("Gniazda, łączniki (szt.):", value=40, step=1)
+    in_pt_pwr_r = c2.number_input("Stawka za punkt 230V (zł):", value=85.0, step=5.0)
+    
+    in_pt_pwr = c1.number_input("lampy (szt.):", value=40, step=1)
     in_pt_pwr_r = c2.number_input("Stawka za punkt 230V (zł):", value=85.0, step=5.0)
 
     in_pt_lan = c1.number_input("Punkty TV i LAN (szt.):", value=8, step=1)
